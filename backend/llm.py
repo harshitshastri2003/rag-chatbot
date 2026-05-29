@@ -1,6 +1,8 @@
 from groq import Groq
+import os
 
-client = Groq(api_key="YOUR_GROQ_API_KEY_HERE")
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+
 def get_answer(question: str, context: str):
     prompt = f"Use the following context to answer the question.\n\nContext:\n{context}\n\nQuestion: {question}"
     
