@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+const BACKEND = "https://rag-chatbot-production-1d7b.up.railway.app"
+
 export default function App() {
   const [messages, setMessages] = useState([])
   const [question, setQuestion] = useState("")
@@ -12,7 +14,7 @@ export default function App() {
     setUploading(true)
     const formData = new FormData()
     formData.append("file", file)
-    await fetch("http://127.0.0.1:8080/upload", {
+    await fetch(`${BACKEND}/upload`, {
       method: "POST",
       body: formData,
     })
@@ -25,7 +27,7 @@ export default function App() {
     setMessages((prev) => [...prev, { role: "user", text: question }])
     setLoading(true)
     setQuestion("")
-    const res = await fetch(`http://127.0.0.1:8080/chat?question=${encodeURIComponent(question)}`, {
+    const res = await fetch(`${BACKEND}/chat?question=${encodeURIComponent(question)}`, {
       method: "POST",
     })
     const data = await res.json()
