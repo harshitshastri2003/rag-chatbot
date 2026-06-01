@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const BACKEND = "https://rag-chatbot-production-1d7b.up.railway.app"
+const BACKEND = "https://harshitshastri2003-rag-chatbot-backend.hf.space"
 
 export default function App() {
   const [messages, setMessages] = useState([])
