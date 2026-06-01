@@ -2,7 +2,7 @@ from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 import shutil
 import os
-from ingest import ingest_pdf, collection, model
+from ingest import ingest_pdf, model, client
 from retriever import retrieve
 from llm import get_answer
 
@@ -36,6 +36,7 @@ def upload_pdf(file: UploadFile = File(...)):
 @app.post("/chat")
 def chat(question: str):
     try:
+        collection = client.get_collection("rag_collection")
         context = retrieve(question, collection, model)
         answer = get_answer(question, context)
         return {"answer": answer}
