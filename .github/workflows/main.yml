@@ -1,0 +1,27 @@
+name: RAG chatbot 
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+      runs-on: ubuntu-22.04
+
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+          
+        - name: Set up python
+          uses: actions/setup-python@v4
+          with:
+            python-version : '3.10'
+
+        - name: Install Dependencies
+          run: pip install -r backend/requirements.txt
+
+        - name: Check python version
+          run: python --version
+            
+          
+          
