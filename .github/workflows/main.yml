@@ -18,7 +18,7 @@ jobs:
             python-version : '3.10'
 
         - name: Install Dependencies
-          run: pip install -r backend/requirements.txt
+          run: pip install -r backend/requirements.txt --ignore-requires-python
 
         - name: Check python version
           run: python --version
